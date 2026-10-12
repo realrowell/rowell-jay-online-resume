@@ -1,0 +1,6 @@
+[build]
+  command = "npx react-router build"
+  publish = "build/client"
+
+[dev]
+  command = "npx react-router dev"
