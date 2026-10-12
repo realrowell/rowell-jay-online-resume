@@ -1,5 +1,5 @@
 import TechnicalSkills from "@/pages/introductions/TechnicalSkills";
-import { type Route } from "../+types/root";
+import { type Route } from "./+types/root";
 import ContactInfoCard from "@/components/ContactInfoCard";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { IconCode, IconSparkles, IconUser } from "@tabler/icons-react";
