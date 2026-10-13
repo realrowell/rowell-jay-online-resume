@@ -34,6 +34,8 @@ import {
     IconPhoto,
     IconX,
 } from "@tabler/icons-react";
+import { Button } from "@/components/ui/button";
+import { Link } from "react-router";
 
 export default function Projects() {
     const [selectedProject, setSelectedProject] =
@@ -94,8 +96,7 @@ export default function Projects() {
 
         return parsedDate.toLocaleDateString("en-US", {
             year: "numeric",
-            month: "long",
-            day: "numeric",
+            month: "short"
         });
     };
 
@@ -228,7 +229,7 @@ export default function Projects() {
             >
                 <DialogContent
                     showCloseButton={false}
-                    className="flex max-h-[95dvh] w-[calc(100%-1rem)] max-w-none flex-col gap-4 overflow-hidden p-3 sm:w-[calc(100%-2rem)] sm:max-w-4xl sm:p-5 lg:max-w-5xl lg:p-6"
+                    className="flex max-h-[80dvh] w-[calc(100%-1rem)] max-w-none flex-col gap-4 overflow-hidden p-3 sm:w-[calc(100%-2rem)] sm:max-w-4xl sm:p-5 lg:max-w-5xl lg:p-6"
                 >
                     {selectedProject && (
                         <>
@@ -247,11 +248,6 @@ export default function Projects() {
                                 <DialogTitle className="text-lg leading-snug sm:text-2xl">
                                     {selectedProject.title}
                                 </DialogTitle>
-
-                                <DialogDescription className="text-sm leading-relaxed">
-                                    {selectedProject.description ||
-                                        "Project overview, implementation details, and technology stack."}
-                                </DialogDescription>
                             </DialogHeader>
 
                             {/* Close button */}
@@ -274,7 +270,7 @@ export default function Projects() {
                                             key={activeImages[activeImageIndex]}
                                             src={activeImages[activeImageIndex]}
                                             alt={`${selectedProject.title} screenshot ${activeImageIndex + 1}`}
-                                            className="block max-h-[50dvh] w-full object-contain sm:max-h-[55dvh]"
+                                            className="block max-h-[50dvh] w-full object-contain sm:max-h-[40dvh]"
                                         />
 
                                         {activeImages.length > 1 && (
@@ -283,7 +279,7 @@ export default function Projects() {
                                                     type="button"
                                                     onClick={showPreviousImage}
                                                     aria-label="Previous project image"
-                                                    className="absolute left-2 top-1/2 flex size-9 -translate-y-1/2 items-center justify-center rounded-full border border-border/50 bg-background/90 text-foreground shadow-md transition hover:bg-background sm:left-3 sm:size-10"
+                                                    className="hover:cursor-pointer absolute left-2 top-1/2 flex size-9 -translate-y-1/2 items-center justify-center rounded-full border border-border/50 bg-background/90 text-foreground shadow-md transition hover:bg-background sm:left-3 sm:size-10"
                                                 >
                                                     <IconChevronLeft className="size-5" />
                                                 </button>
@@ -292,7 +288,7 @@ export default function Projects() {
                                                     type="button"
                                                     onClick={showNextImage}
                                                     aria-label="Next project image"
-                                                    className="absolute right-2 top-1/2 flex size-9 -translate-y-1/2 items-center justify-center rounded-full border border-border/50 bg-background/90 text-foreground shadow-md transition hover:bg-background sm:right-3 sm:size-10"
+                                                    className="hover:cursor-pointer absolute right-2 top-1/2 flex size-9 -translate-y-1/2 items-center justify-center rounded-full border border-border/50 bg-background/90 text-foreground shadow-md transition hover:bg-background sm:right-3 sm:size-10"
                                                 >
                                                     <IconChevronRight className="size-5" />
                                                 </button>
@@ -344,7 +340,13 @@ export default function Projects() {
                                     </div>
                                 )}
 
-                                {/* Project metadata */}
+                                {/* Project metadata */} 
+                                <DialogDescription className="text-sm leading-relaxed">
+                                    <article>
+                                        {selectedProject.description ||
+                                            "Project overview, implementation details, and technology stack."}
+                                    </article>
+                                </DialogDescription>
                                 <div className="grid shrink-0 grid-cols-1 gap-4 rounded-lg border bg-card p-4 sm:grid-cols-2">
                                     <div className="flex items-start gap-3">
                                         <div className="flex size-9 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
@@ -411,17 +413,12 @@ export default function Projects() {
                             </div>
 
                             {/* Dialog footer */}
-                            <div className="flex shrink-0 items-center justify-between gap-3 border-t pt-3">
-                                <p className="truncate text-xs text-muted-foreground">
-                                    Project: {selectedProject.slug}
-                                </p>
+                            <div className="flex shrink-0 items-center justify-end gap-3 border-t pt-3">
 
                                 <div className="flex shrink-0 items-center gap-2">
-                                    {selectedProject.case_study_url && (
-                                        <a
-                                            href={selectedProject.case_study_url}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
+                                    {selectedProject.case_study_url && ( 
+                                        <Link
+                                            to={selectedProject.case_study_url} 
                                             className="inline-flex items-center gap-2 rounded-md border px-3 py-2 text-sm font-medium transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                                         >
                                             <span className="hidden sm:inline">
@@ -431,13 +428,13 @@ export default function Projects() {
                                                 Case Study
                                             </span>
                                             <IconExternalLink className="size-4" />
-                                        </a>
+                                        </Link>
                                     )}
 
-                                    <DialogClose >
+                                    <DialogClose > 
                                         <button
                                             type="button"
-                                            className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-opacity hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                                            className="hover:cursor-pointer inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-opacity hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                                         >
                                             Close
                                         </button>

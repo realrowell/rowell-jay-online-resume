@@ -17,9 +17,7 @@ export default function Training(){
                     </h2>
 
                     <p className="max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg">
-                        My professional journey in web development, custom
-                        business systems, and IT support — turning technical
-                        challenges into practical solutions.
+                        Continuous learning through technical training, self-study, and hands-on practice to strengthen my skills in modern technologies and software development.
                     </p>
                 </div>
 

@@ -1,16 +1,7 @@
 import { TooltipProvider } from "@/components/ui/tooltip"
 import { Outlet } from "react-router";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
-import { AppSidebar } from "@/components/AppSidebar";
-
-const navItems = [
-  { title: "Introduction", url: "/" },
-  { title: "Work Experience", url: "/experience" },
-  { title: "Education", url: "/education" },
-  { title: "Trainings and Certificates", url: "/trainings" },
-  { title: "Projects", url: "/projects" },
-  { title: "Case Studies", url: "/case-studies" },
-];
+import { AppSidebar } from "@/components/AppSidebar"; 
 
 export default function AppLayout() {
     return (

@@ -9,7 +9,7 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
-import { AspectRatio } from "@/components/ui/aspect-ratio" 
+import { AspectRatio } from "@/components/ui/aspect-ratio";
 
 const navItems = [
   { title: "Introduction", url: "/" },
@@ -27,24 +27,40 @@ export function AppSidebar() {
   return (
     <Sidebar>
       <SidebarHeader className="flex items-center justify-center py-10">
-        <AspectRatio ratio={16 / 9} className="max-w-sm rounded-lg bg-muted w-40 h-40 shadow-xl flex items-center justify-center">
-          <img src="/images/profile_image.webp" alt="Profile Photo"></img>
+        <AspectRatio
+          ratio={16 / 9}
+          className="flex h-40 w-40 max-w-sm items-center justify-center rounded-lg bg-muted shadow-xl"
+        >
+          <img
+            src="/images/profile_image.webp"
+            alt="Profile Photo"
+            className="h-full w-full rounded-lg object-cover"
+          />
         </AspectRatio>
       </SidebarHeader>
+
       <SidebarContent className="px-5">
         <SidebarGroup>
           <SidebarGroupContent>
             <SidebarMenu>
-              {navItems.map((item) => (
-                <SidebarMenuItem key={item.title}>
-                  <SidebarMenuButton 
-                    isActive={location.pathname === item.url}
-                    onClick={() => navigate(item.url)}
-                  >
-                    <span>{item.title}</span>
-                  </SidebarMenuButton>
-                </SidebarMenuItem>
-              ))}
+              {navItems.map((item) => {
+                const isActive =
+                  item.url === "/case-studies"
+                    ? location.pathname === item.url ||
+                      location.pathname.startsWith(`${item.url}/`)
+                    : location.pathname === item.url;
+
+                return (
+                  <SidebarMenuItem key={item.title}>
+                    <SidebarMenuButton
+                      isActive={isActive}
+                      onClick={() => navigate(item.url)}
+                    >
+                      <span>{item.title}</span>
+                    </SidebarMenuButton>
+                  </SidebarMenuItem>
+                );
+              })}
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>
