@@ -2,16 +2,18 @@ import CaseStudyDetail from "@/pages/case_studies/case_study_details";
 import type { Route } from "../+types/root";
 import type { Project } from "@/types/project";
 import { ProjectData } from "@/data/project_data";
+import { CaseStudyData } from "@/data/case_study_data";
+import type { CaseStudy } from "@/types/case_study";
 
 const SITE_NAME = "Rowell Jay Real | Portfolio";
 const SITE_URL = "https://rowell-jay-online-resume.netlify.app";
 
 export function meta({ params }: Route.MetaArgs) {
-    const project: Project | undefined = ProjectData.find(
+    const study: CaseStudy | undefined = CaseStudyData.find(
         (item) => item.slug === params.slug,
     );
 
-    if (!project) {
+    if (!study) {
         return [
         { title: `Case Study Not Found | ${SITE_NAME}` },
         {
@@ -22,18 +24,18 @@ export function meta({ params }: Route.MetaArgs) {
         ];
     }
 
-    const title = `${project.title} | ${SITE_NAME}`;
+    const title = `${study.title} | ${SITE_NAME}`;
 
     const description =
-        project.description ||
-        `Explore the ${project.title} case study, including its development process, technologies, and implementation.`;
+        study.description ||
+        `Explore the ${study.title} case study, including its development process, technologies, and implementation.`;
 
     // Use an absolute image URL for social sharing.
-    const image = project.featured_image
-        ? `${SITE_URL}${project.featured_image.startsWith("/") ? "" : "/"}${project.featured_image}`
+    const image = study.featured_image
+        ? `${SITE_URL}${study.featured_image.startsWith("/") ? "" : "/"}${study.featured_image}`
         : `${SITE_URL}/images/profile_image.webp`;
 
-    const url = `${SITE_URL}/case-studies/${project.slug}`;
+    const url = `${SITE_URL}/case-studies/${study.slug}`;
 
     return [
         // Basic SEO
@@ -52,7 +54,7 @@ export function meta({ params }: Route.MetaArgs) {
         { property: "og:description", content: description },
         { property: "og:url", content: url },
         { property: "og:image", content: image },
-        { property: "og:image:alt", content: project.title }, 
+        { property: "og:image:alt", content: study.title }, 
     ];
 }
 
