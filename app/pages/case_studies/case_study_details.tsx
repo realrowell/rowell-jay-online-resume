@@ -10,7 +10,8 @@ import { useMonthDateFormat } from "@/hooks/use-month-date-format";
 
 import {
     Card,
-    CardContent, 
+    CardContent,
+    CardHeader, 
 } from "@/components/ui/card"; 
 
 import {
@@ -19,15 +20,21 @@ import {
     IconCode,
     IconFileText, 
 } from "@tabler/icons-react";
+import type { CaseStudy } from "@/types/case_study";
+import { CaseStudyData } from "@/data/case_study_data";
 
 export default function CaseStudyDetail() {
     const { slug } = useParams();
 
-    const project: Project | undefined = ProjectData.find(
+    // const project: Project | undefined = ProjectData.find(
+    //     (item) => item.slug === slug,
+    // );
+
+    const study: CaseStudy | undefined = CaseStudyData.find(
         (item) => item.slug === slug,
     );
 
-    if (!project) {
+    if (!study) {
         return (
             <Card className="border-border/70">
                 <CardContent className="flex flex-col items-center p-10 text-center">
@@ -54,7 +61,7 @@ export default function CaseStudyDetail() {
         );
     }
 
-    const markdown = getCaseStudy(project.slug);
+    const markdown = getCaseStudy(study.slug);
 
     if (markdown === null) {
         return (
@@ -77,15 +84,13 @@ export default function CaseStudyDetail() {
 
                         <p className="mt-2 max-w-md text-sm leading-relaxed text-muted-foreground">
                             The detailed case study for{" "}
-                            {project.title} has not been published yet.
+                            {study.title} has not been published yet.
                         </p>
                     </CardContent>
                 </Card>
             </main>
         );
-    } 
-
-    const deploymentDate = useMonthDateFormat(project.date_deployed);
+    }  
 
     return (
         <main className="">
@@ -99,8 +104,7 @@ export default function CaseStudyDetail() {
             </Link>  
 
             {/* Markdown case study */}
-            <Card className="mb-10 gap-0 overflow-hidden border-border/70 py-0"> 
-
+            <Card className="mb-10 gap-0 overflow-hidden border-border/70 py-0">  
                 <CardContent className="px-5 py-7 sm:px-8 sm:py-10">
                     <article
                         className="
@@ -144,6 +148,8 @@ export default function CaseStudyDetail() {
                             dark:prose-a:text-primary
                         "
                     >
+                        
+                        <h1>{ study.title }</h1>
                         <ReactMarkdown
                             remarkPlugins={[remarkGfm]}
                             components={{
@@ -177,14 +183,14 @@ export default function CaseStudyDetail() {
                     <h3 className="text-2xl mt-10 mb-5 font-bold">
                         Project Screenshots
                     </h3>
-                    {project.project_images && project.project_images.length > 0 ? (
+                    {study.images && study.images.length > 0 ? (
                         /* Wrap the entire map loop in the grid container */
                         <div className="grid grid-cols-2 gap-3 w-full"> 
-                            {project.project_images.map((image, index) => (
+                            {study.images.map((image, index) => (
                                 <img
                                     key={index}
                                     src={image}
-                                    alt={`${project.title} preview`}
+                                    alt={`${study.title} preview`}
                                     /* Standardized Tailwind classes below */
                                     className="max-h-100 w-full object-contain object-center"
                                 />

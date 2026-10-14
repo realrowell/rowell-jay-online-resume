@@ -1,4 +1,3 @@
-# CASE STUDY: EZLEAVE — Web-Based Leave Management System
 
 > A secure, role-based leave management platform built for a local agriculture company to support remote field employees and streamline HR workflows.
 

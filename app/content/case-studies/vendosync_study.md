@@ -1,4 +1,3 @@
-# CASE STUDY: VendoSync — Piso WiFi Vendo ISP Management System
 
 > A comprehensive management information system designed to centralize and streamline the operations of a Piso WiFi Vendo Internet Service Provider (ISP).
 

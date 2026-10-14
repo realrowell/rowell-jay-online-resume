@@ -1,4 +1,3 @@
-# CASE STUDY: Centralized Office Network & Resource Infrastructure 
 
 - **Role:** Lead Infrastructure Specialist
 - **Status:** Deployed & Maintained
